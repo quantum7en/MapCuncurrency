@@ -10,21 +10,30 @@ public class App {
     public static void main(String[] args) throws InterruptedException {
         SuperCache<String, Integer>  superCache = new SuperCache<>(3000);
 
-        Thread[] arr = new Thread[70];
-        for(int i = 0 ; i < 70; i++ ){
+        Thread[] arr = new Thread[4];
+        for(int i = 0 ; i < 4; i+=2 ){
             arr[i] = new Thread(new ThreadTest(superCache));
+            arr[i+1] = new Thread(new ThreadTestReader(superCache));
             arr[i].start();
+            Thread.sleep(100);
+            arr[i+1].start();
         }
-        for (int i = 0; i < 3; i++) {
-            arr[i].join();
-        }
+
+        System.out.println("Started");
+//        for (int i = 0; i < 3; i++) {
+//            arr[i].join();
+//        }
+
+ //       superCache.put("main", 9);
+        Thread.sleep(3500);
         for (Map.Entry<String, Integer> entry: superCache.entrySet()) { //except
             System.out.println(entry.getKey() + " " + entry.getValue());
+            System.out.println("here");
         }
         System.out.println("PAUSE");
-        for (Map.Entry<String, Integer> entry: superCache.entrySet()) {
-            System.out.println(entry.getKey() + " " + entry.getValue());
-        }
+//        for (Map.Entry<String, Integer> entry: superCache.entrySet()) {
+//            System.out.println(entry.getKey() + " " + entry.getValue());
+//        }
 //        int i = 0;
 //        for (Map.Entry<Integer, String> entry: superCache.entrySet()) {
 //            if(i == 3){
