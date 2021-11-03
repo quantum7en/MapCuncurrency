@@ -11,9 +11,10 @@ public class ThreadTest implements Runnable{
 
     @Override
     public void run() {
-        for (int i = 0; i < 100; i++) {
-
+        for (int i = 100; i < 110; i++) {
+            System.out.println("put");
             threadSuperCache.put(String.valueOf(i) + " " + Thread.currentThread().getName(), i);
+            System.out.println(Thread.currentThread().getName() + " " + i);
         }
     }
 
