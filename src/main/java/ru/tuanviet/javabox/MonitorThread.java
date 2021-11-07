@@ -1,5 +1,6 @@
 package ru.tuanviet.javabox;
 
+import java.util.AbstractMap;
 import java.util.Map;
 
 public class MonitorThread<K, V> implements Runnable {
@@ -23,15 +24,17 @@ public class MonitorThread<K, V> implements Runnable {
         while (true) {
             locker.acquireReadLock();
             System.out.println(hashMap.size() + " in monitor");
+            hashMap.clear();
+            AbstractMap
 //            if ( hashMap.size() == 0 ) {
 //                locker.releaseReadLock();
 //                System.out.println("Monitor POGIB");
 //                break;
 //            }
-            CacheItem<K, V> node = superCache.getFirst();
-            if ( System.currentTimeMillis() - node.getCreationTime() > ttl ) {
-
-            }
+//            CacheItem<K, V> node = superCache.getFirst();
+//            if ( System.currentTimeMillis() - node.getCreationTime() > ttl ) {
+//
+//            }
 
 //            for (Map.Entry<K, V> entry : superCache.entrySet()) {
 //                if ( System.currentTimeMillis() - superCache.get().getCreationTime() > ttl ) {
